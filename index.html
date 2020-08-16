@@ -51,10 +51,8 @@
             key: 'de410d4ca086f6076f8ce109765ff3ee',
         }
 
-        form.addEventListener('keypress', (e) => {
-            if (e.keyCode == 13) {
-                e.preventDefault();
-            }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
         });
 
         searchBtn.addEventListener('click', updateWeather);
