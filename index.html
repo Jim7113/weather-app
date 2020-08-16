@@ -20,7 +20,7 @@
 
 <body>
     <div class="container">
-        <form class="col-md-6 m-auto py-5">
+        <form class="col-md-6 m-auto py-5" id="search-form">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" id="city-input" placeholder="Enter a location for Weather ...">
                 <div class="input-group-append">
@@ -38,6 +38,7 @@
     </div>
 
     <script>
+        const form = document.getElementById('search-form');
         const queryParam = document.getElementById('city-input');
         const searchBtn = document.getElementById('search-btn');
         const icon = document.getElementById('type-icon');
@@ -50,10 +51,15 @@
             key: 'de410d4ca086f6076f8ce109765ff3ee',
         }
 
+        form.addEventListener('keypress', (e) => {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        });
+
         searchBtn.addEventListener('click', updateWeather);
 
         function updateWeather() {
-            console.log(queryParam.value);
             if (queryParam.value !== '') {
                 fetch(`${api.base}?q=${queryParam.value}&units=metric&APPID=${api.key}`)
                     .then(response => {
